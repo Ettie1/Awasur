@@ -1,0 +1,159 @@
+@model awasur.Models.CustomerViewModel
+
+<style>
+    #divAddress{
+        background-color: aqua;
+        width: max-content;    
+        visibility: hidden;
+    }
+    
+    #divContact{
+        width: max-content;
+        background-color: blueviolet;
+        visibility: hidden;
+    }
+    
+</style>
+
+<h1>@ViewBag.Title</h1>
+
+
+@using(Html.BeginForm("CreateCustomer", "App", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Customer.FirstName)
+        @Html.EditorFor(m=>m.Customer.FirstName)
+        @Html.ValidationMessageFor(m=>m.Customer.FirstName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Customer.LastName)
+        @Html.EditorFor(m=>m.Customer.LastName)
+        @Html.ValidationMessageFor(m=>m.Customer.LastName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Customer.Email)
+        @Html.EditorFor(m=>m.Customer.Email)
+        @Html.ValidationMessageFor(m=>m.Customer.Email)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Customer.PhoneNumber)
+        @Html.EditorFor(m=>m.Customer.PhoneNumber)
+        @Html.ValidationMessageFor(m=>m.Customer.PhoneNumber)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Customer.Address)
+        @Html.EditorFor(m=>m.Customer.Address)
+        @Html.ValidationMessageFor(m=>m.Customer.Address)
+    </div>
+
+    <button id="btnAddress" type="button" class="btn btn-outline-primary">Add Address</button>
+    <div id="divAddress">
+        <div>
+            @Html.LabelFor(m => m.Address.Addr1)
+            @Html.EditorFor( m=> m.Address.Addr1)
+            @Html.ValidationMessageFor(m => m.Address.Addr1)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Address.Addr2)
+            @Html.EditorFor( m=> m.Address.Addr2)
+            @Html.ValidationMessageFor(m => m.Address.Addr2)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Address.Addr3)
+            @Html.EditorFor( m=> m.Address.Addr3)
+            @Html.ValidationMessageFor(m => m.Address.Addr3)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Address.Addr4)
+            @Html.EditorFor( m=> m.Address.Addr4)
+            @Html.ValidationMessageFor(m => m.Address.Addr4)
+        </div>
+    </div>
+    <button id="btnContact" type="button" class="btn btn-outline-primary">Add Contact</button>
+    <div id="divContact">
+        <div>
+            @Html.LabelFor(m => m.Contact.Celno)
+            @Html.EditorFor( m=> m.Contact.Celno)
+            @Html.ValidationMessageFor(m => m.Contact.Celno)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Contact.Email)
+            @Html.EditorFor( m=> m.Contact.Email)
+            @Html.ValidationMessageFor(m => m.Contact.Email)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Contact.HomeTel)
+            @Html.EditorFor( m=> m.Contact.HomeTel)
+            @Html.ValidationMessageFor(m => m.Contact.HomeTel)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Contact.WorkTel)
+            @Html.EditorFor( m=> m.Contact.WorkTel)
+            @Html.ValidationMessageFor(m => m.Contact.WorkTel)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Contact.Other)
+            @Html.EditorFor( m=> m.Contact.Other)
+            @Html.ValidationMessageFor(m => m.Contact.Other)
+        </div>
+    </div>
+    <button id="btnPolicy" type="button" >Add Policy</button>
+
+    <div>
+        @Html.DropDownListFor(m => m.InsuranceType.Name, new SelectList(Model.InsuranceTypes, "Id","Name"))
+    </div>
+
+    <input type="submit" value="Save customer" />
+}
+
+
+@section scripts{
+<script>
+ 
+        $(document).ready(()=>{       
+        const divAddress = $("#divAddress");
+        const divContact = $("#divContact");
+        const btnAddress = $("#btnAddress");
+        const btnContact = $("#btnContact");
+
+        btnAddress.click(()=>{
+            divAddress.css({"visibility":"visible"});
+            //alert("Clicked Address");
+
+        });
+        btnContact.click(()=>{
+            divContact.css({"visibility":"visible"});
+            //alert("Clicked Contact");
+        });
+
+
+    });
+</script>
+}
+@*
+<form method="post" action="CreateCustomer">
+
+    <div>
+        <label for="FirstName">Firstname</label>
+        <input id="FirstName" type="text" name="FirstName" />
+    </div>
+    <div>
+        <label for="LastName">Lastname</label>
+        <input id="LastName" type="text" name="LastName" />
+    </div>
+    <div>
+        <label for="Email">Email</label>
+        <input id="Email" type="email" name="Email" />
+    </div>
+    <div>
+        <label for="PhoneNumber">Phone number</label>
+        <input id="PhoneNumber" type="text" name="PhoneNumber" />
+    </div>
+    <div>
+        <label for="Address">Address</label>
+        <input id="Address" type="text" name="Address" />
+    </div>
+    <input type="submit" value="Save" />
+
+</form>
+*@

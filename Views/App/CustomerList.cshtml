@@ -1,0 +1,14 @@
+@model IEnumerable<awasur.Models.Customer>
+
+<table class="table-bordered table-striped flex-column">
+    
+        <th>Firstname</th><th>Lastname</th>
+    
+    
+        @foreach(Customer c in Model)
+        {
+            <td>@c.FirstName</td>
+            <td>@c.LastName</td>
+        }
+    
+</table>

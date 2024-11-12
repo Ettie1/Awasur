@@ -1,0 +1,29 @@
+@model IEnumerable<awasur.Models.Customer>
+
+@using(Html.BeginForm("SearchCustomer", "App", FormMethod.Post))
+{
+    <div>
+        @Html.Label("Firstname")
+        @Html.Editor("firstname")
+    </div>
+    <div>
+        @Html.Label("Lastname")
+        @Html.Editor("lastname")
+    </div>
+    <input type="submit" value="Search" />
+}
+
+@if(Model!=null)
+{
+    <table>
+        <thead>
+            <th>Firstname</th><th>Lastname</th>
+        </thead>
+        <tbody>
+            @foreach(Customer c in Model)
+            {
+                <td>@c.FirstName</td><td>@c.LastName</td><td><a href=CustomerDetails/@c.Id class="btn btn-outline-primary">Details</a></td><td><a href=EditCustomer/@c.Id class="btn btn-outline-warning">Edit</a></td>
+            }
+        </tbody>
+    </table>
+}
